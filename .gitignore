@@ -109,3 +109,6 @@ ENV/
 # SQLite 3 database files
 *.sqlite3
 
+# Django migrations
+migrations/
+
