@@ -1,0 +1,25 @@
+{% extends 'pages/shards/base.html' %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+    <div class="paragraph header">Регистрация</div>
+    <div class="row">
+        <div class="col">
+            <form action="{% url 'pages:signup' %}" method="post" data-lookup="signup">
+                {% csrf_token %}
+                {% for field in signup_form %}
+                    <div class="form-group row">
+                        <div class="col-3">{{ field.label_tag }}</div>
+                        <div class="col-9">{{ field }}</div>
+                        <div class="col-3"></div>
+                        <div class="col-9 errors" id="{{ field.auto_id }}_errors"></div>
+                    </div>
+                {% endfor %}
+                <div><b>Все поля обязательны к заполнению.</b></div><br>
+                <div>
+                    <input type="submit" value="Зарегистрироваться">
+                    <a href="" class="styled info" data-toggle="modal" data-target="#login-modal">Войти</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
