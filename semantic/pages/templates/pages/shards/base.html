@@ -3,10 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bootstrap-4.0.0/css/bootstrap.min.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
     {% block style %}{% endblock %}
 </head>
 <body>
-    {% block content %}{% endblock %}
+    <div class="container-fluid">
+        <div class="row header-pad">
+            <div class="col header-pad-spacer"></div>
+            <div class="col header-pad-content">
+                <a href="{% url 'pages:index' %}">
+                    <img src="{% static 'pics/logo-width.png' %}" class="header-pad-logo">
+                </a>
+            </div>
+            <div class="col header-pad-spacer"></div>
+        </div>
+
+        <div id="header-pad-extra-base" class="row header-pad-extra">
+            <div class="col header-pad-extra-spacer"></div>
+            {% include 'pages/shards/header-pad-extra.html' %}
+            <div class="col header-pad-extra-spacer"></div>
+        </div>
+        {% block no-header-pad-extra-specific %}
+            <div class="row header-pad-extra-specific">
+                <div class="col header-pad-extra-spacer"></div>
+                {% block header-pad-extra-specific %}{% endblock %}
+                <div class="col header-pad-extra-spacer"></div>
+            </div>
+        {% endblock %}
+    </div>
+    {% block base_content %}
+        <div class="container-fluid">
+            <div class="row content-pad">
+                <div class="col">
+                    {% block content-left %}{% endblock %}
+                </div>
+                <div class="col-6 content-main">
+                    {% block content %}{% endblock %}
+                    <div class="copyright">
+                        Semantic Crawler 2017 (c) Volynov Mikhail
+                    </div>
+                </div>
+                <div class="col">
+                    {% block content-right %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% if not user.is_authenticated %}
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Вход в качестве участника</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="centered">
+                            <img src="{% static 'pics/logo-width_blue.png' %}">
+                        </div>
+                        <form action="{% url 'core:login' %}" method="post" data-lookup="login">
+                            {% csrf_token %}
+                            {% for field in login_form %}
+                                <div class="form-group row">
+                                    <div class="col-3">
+                                        {{ field.label_tag }}
+                                    </div>
+                                    <div class="col">
+                                        {{ field }}
+                                    </div>
+                                    <div class="col-12 errors" id="{{ field.auto_id }}_errors">{{ field.errors }}</div>
+                                </div>
+                            {% endfor %}
+                            <div class="errors bumper-bottom" id="id_all_errors"></div>
+                            <input type="submit" value="Войти">
+                            <a href="{% url 'pages:signup' %}" class="styled info">Зарегистрироваться</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script src="{% static 'bootstrap-4.0.0/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/semantic.js' %}"></script>
     {% block javascript %}{% endblock %}
 </body>
 </html>

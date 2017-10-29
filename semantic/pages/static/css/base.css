@@ -1,0 +1,160 @@
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+.red {
+    background: orangered;
+}
+
+.blue {
+    background: dodgerblue;
+}
+
+.hidden {
+    display: none;
+}
+
+.content-pad {
+    height: 100%;
+}
+
+.content-main {
+    background: ghostwhite;
+    border-radius: 0 0 5px 5px;
+    padding: 30px 30px 20px 30px;
+}
+
+.header-pad {
+    height: 60px;
+}
+
+.header-pad-logo {
+    height: 60px;
+}
+
+.header-pad-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #8796a7;
+    color: whitesmoke;
+    transition: .5s;
+}
+
+.header-pad-content:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+.header-pad-spacer {
+    background: #e5e5e5;
+}
+
+.header-pad-extra {
+    min-height: 35px;
+}
+
+.header-pad-extra-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 120px;
+
+    background: slategray;
+    color: whitesmoke;
+}
+
+.header-pad-extra-btn:hover {
+    background: #98abc4;
+    color: whitesmoke;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.header-pad-extra-btn.staff {
+    color: white;
+    background: #d28fd3;
+}
+
+.header-pad-extra-btn.staff:hover {
+    background: #eb97ee;
+}
+
+.header-pad-extra-spacer {
+    background: slategray;
+}
+
+.header-pad-extra-specific {
+    min-height: 25px;
+}
+
+.header-pad-extra-specific .header-pad-extra-spacer {
+    background: ghostwhite;
+}
+
+.header-pad-extra-specific .header-pad-extra-btn {
+    background: rgba(176, 196, 222, .6);
+}
+
+.header-pad-extra-specific .header-pad-extra-btn:hover {
+    background: #98abc4;
+}
+
+#header-pad-extra-base {
+    height: 100%;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paragraph {
+    margin-bottom: 20px;
+}
+
+.paragraph.middle {
+    font-size: 16pt;
+}
+
+.paragraph.header {
+    font-size: 20pt;
+}
+
+.paragraph.header.compact {
+    margin-bottom: 10px;
+}
+
+.paragraph.note {
+    font-size: 11pt;
+    font-style: italic;
+    color: slategray;
+}
+
+.copyright {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 11pt;
+    color: gray;
+}
+
+.tagger {
+    padding: 7px 10px;
+    margin: 7px 7px;
+    background: rgba(160,177,199,.7);
+    color: white;
+    transition: .5s;
+}
+
+.tagger:hover {
+    text-decoration: none;
+    background: rgba(160,177,199,.1);
+}
+
+.bumper-bottom {
+    margin-bottom: 15px;
+}

@@ -1,12 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
-from django.http import Http404
+from django.http import Http404, JsonResponse
 
-from pages.views import AjaxResponseMixin
-from pages.forms import SignInForm
+from pages.forms import SignInForm, SignUpForm
 
 from utils.http import WebStatus
+
+
+class AjaxResponseMixin(object):
+    def __init__(self):
+        self.response = {}
+        self.status = WebStatus.http.internal_server_error
+
+    @property
+    def ajax_response(self):
+        return JsonResponse(self.response, status=self.status)
 
 
 class LoginView(AjaxResponseMixin, View):
@@ -42,3 +51,24 @@ class LoginView(AjaxResponseMixin, View):
             return self.ajax_response
         else:
             raise Http404
+
+
+class LogoutView(AjaxResponseMixin, View):
+    def get(self, request, *args, **kwargs):
+        r = self.request
+        if r.is_ajax():
+
+            if r.user.is_authenticated():
+                logout(r)
+                self.response['status'] = WebStatus.json.success
+                self.response['message'] = 'Запрос принят.'
+                self.status = WebStatus.http.success
+            else:
+                self.response['status'] = WebStatus.json.fail
+                self.response['message'] = 'Запрос отклонён. Пользователь не авторизован.'
+                self.status = WebStatus.http.forbidden
+
+            return self.ajax_response
+        else:
+            logout(r)
+            return redirect('pages:index')

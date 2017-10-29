@@ -1,0 +1,58 @@
+{% extends 'pages/shards/base.html' %}
+{% block title %}Профиль {{ profile.nickname }}{% endblock %}
+{% block style %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block no-header-pad-extra-specific %}{% endblock %}
+
+{% block content %}
+    <div class="profile-pad-avatar">
+        {% if profile.avatar %}
+            <img src="{{ profile.avatar.url }}" class="profile-avatar">
+        {% else %}
+            <img src="http://via.placeholder.com/200x200" class="profile-avatar">
+        {% endif %}
+    </div>
+    {% if is_owner %}
+        <div class="row">
+            <div class="col-12 paragraph header compact centered">{{ profile.nickname }}</div>
+        </div>
+        {% if not profile.email_verified %}
+            <div class="row">
+                <div class="col-12 warning centered bumper-bottom">Адрес электронной почты не подтвержден</div>
+            </div>
+        {% endif %}
+        <form action="{% url 'pages:profile' profile.nickname %}" method="post" data-lookup="profile"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in profile_edit_form %}
+                <div class="form-group row">
+                    <div class="col-3">{{ field.label_tag }}</div>
+                    <div class="col-9">{{ field }}</div>
+                    <div class="col-3"></div>
+                    <div class="col-9 errors" id="{{ field.auto_id }}_errors"></div>
+                </div>
+            {% endfor %}
+            <input type="submit" value="Сохранить изменения">
+        </form>
+        <div class="centered">
+            <a href="{% url 'pages:index' %}" class="styled info">На главную</a>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-12 paragraph header compact centered">{{ profile.nickname }}</div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-12 paragraph middle">
+                <b>Данные о пользователе</b>
+            </div>
+            <div class="col-12 paragraph">
+                <p><b>Имя:</b> {{ profile.first_name }}</p>
+                <p><b>Фамилия:</b> {{ profile.last_name }}</p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

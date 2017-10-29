@@ -1,0 +1,12 @@
+<div class="col header-pad-extra-spacer"></div>
+{% if user.is_staff %}
+    <a target="_blank" href="{% url 'admin:index' %}" class="col-1 header-pad-extra-btn staff">Управление</a>
+{% endif %}
+{% if user.is_authenticated %}
+    <a href="{% url 'pages:profile' user.nickname %}" class="col-1 header-pad-extra-btn">Профиль</a>
+    <a href="{% url 'core:logout' %}" class="col-1 header-pad-extra-btn">Выход</a>
+{% else %}
+    <a href="" class="col-1 header-pad-extra-btn layout-login" data-toggle="modal" data-target="#login-modal">Войти</a>
+    <a href="{% url 'pages:signup' %}" class="col-1 header-pad-extra-btn">Регистрация</a>
+{% endif %}
+<div class="col header-pad-extra-spacer"></div>

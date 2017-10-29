@@ -1,0 +1,12 @@
+.profile-pad-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 25px;
+}
+
+img.profile-avatar {
+    width: 200px;
+    height: 200px;
+    border: 1px solid darkslategray;
+}

@@ -1,0 +1,83 @@
+input[type='email'], input[type='password'], input[type='text'], textarea {
+    border-radius: 2px;
+    border: 1px solid lightgray;
+    outline: none;
+    box-shadow: none;
+    padding: 2px 5px;
+    width: 100%;
+}
+
+input[type='submit'], a.styled {
+    /*background: #00b672;*/
+    /*color: #c9ffdd;*/
+    /*background: lightsteelblue;*/
+    /*color: #3e4552;*/
+    background: #8796a7;
+    color: whitesmoke;
+    font-size: 12pt;
+    /*border-radius: 4px;*/
+    /*border: 1px solid whitesmoke;*/
+    border: 1px solid rgba(0,0,0,0);
+    /*padding: 5px 10px;*/
+    padding: 8px 20px;
+    margin-right: 5px;
+
+    transition: .2s;
+}
+
+input[type='submit'].open {
+    background: rgb(136, 175, 149);
+}
+
+input[type='submit']:hover, a.styled:hover {
+    background: #a0b1c3;
+    text-decoration: none;
+}
+
+input[type='submit'].open:hover {
+    background: rgb(93, 127, 103);
+}
+
+input[type='submit']:active, a.styled:active {
+    outline: none;
+}
+
+input[type='submit'].staff {
+    color: white;
+    font-weight: bold;
+    background: #d28fd3;
+}
+
+input[type='submit'].staff:hover {
+    background: #eb97ee;
+}
+
+a.styled {
+    /*padding: 7px 10px;*/
+    padding: 10px 20px;
+}
+
+a.styled.info {
+    background: whitesmoke;
+    color: slategray;
+    border: 1px solid darkgray;
+}
+
+a.styled.info:hover {
+    background: white;
+}
+
+.errors, .warning {
+    color: darkred;
+    font-size: 11pt;
+    padding-top: 5px;
+}
+
+.advantage {
+    text-align: center;
+}
+
+.advantage img {
+    width: 250px !important;
+    margin-bottom: 15px;
+}

@@ -1,0 +1,12 @@
+{% extends 'pages/shards/base.html' %}
+
+{% block title %}Панель управления{% endblock %}
+
+{% block content %}
+    <div class="paragraph header">Запросы на сканирование</div>
+    <hr>
+    {% for scan in scan_list %}
+        <p>{{ scan }}</p>
+    {% endfor %}
+    <a href="{% url 'pages:launch' %}" class="styled">Новое сканирование</a>
+{% endblock %}
