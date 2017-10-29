@@ -102,3 +102,10 @@ ENV/
 
 # .idea meta files
 .idea/
+
+# Project configuration files
+*.conf
+
+# SQLite 3 database files
+*.sqlite3
+
