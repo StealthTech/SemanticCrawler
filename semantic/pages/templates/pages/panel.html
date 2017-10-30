@@ -6,7 +6,11 @@
     <div class="paragraph header">Запросы на сканирование</div>
     <hr>
     {% for scan in scan_list %}
-        <p>{{ scan }}</p>
+        <div class="row">
+            <div class="col">{{ scan }}</div>
+            <div class="col-2"><a href="{% url 'pages:scan_results' scan.pk %}" class="styled">Детали</a></div>
+        </div>
     {% endfor %}
+    <hr>
     <a href="{% url 'pages:launch' %}" class="styled">Новое сканирование</a>
 {% endblock %}

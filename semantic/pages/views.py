@@ -74,6 +74,17 @@ class LaunchView(AjaxResponseMixin, GenericPageView):
         return self.ajax_response
 
 
+class ScanResultView(AjaxResponseMixin, GenericPageView):
+    template_name = 'pages/scan_results.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ScanResultView, self).get_context_data(**kwargs)
+        context['scan'] = get_object_or_404(ScanRequest, pk=self.kwargs.get('pk'))
+        scan = get_object_or_404(ScanRequest, pk=self.kwargs.get('pk'))
+        print(scan.results.all())
+        return context
+
+
 class SignUpView(AjaxResponseMixin, GenericPageView):
     template_name = 'pages/signup.html'
 

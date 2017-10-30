@@ -1,0 +1,11 @@
+{% extends 'pages/shards/base.html' %}
+
+{% block title %}Запрос на сканирование {{ scan.pk }}{% endblock %}
+
+{% block content %}
+    {{ scan }}
+    {% for result in scan.results.all %}
+        <div class="row">{{ result.url }}</div>
+        <div class="row">{{ result.verbose_meta }}</div>
+    {% endfor %}
+{% endblock %}
